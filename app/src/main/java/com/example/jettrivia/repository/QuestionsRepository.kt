@@ -10,8 +10,8 @@ class QuestionsRepository @Inject constructor(private val questionAPI: QuestionA
     suspend fun getAllQuestionsData(size: Int): DataOrException<ArrayList<ResultsItem>, Boolean, Exception> {
         try {
             dataOrException.loadingStatus = true
-            dataOrException.data = questionAPI.getAllQuestions(size).results
-            if(dataOrException.data.toString().isEmpty()){
+            dataOrException.response = questionAPI.getAllQuestions(size).results
+            if(dataOrException.response.toString().isEmpty()){
                 dataOrException.e = Exception("No Data Available")
             }
             dataOrException.loadingStatus = false
