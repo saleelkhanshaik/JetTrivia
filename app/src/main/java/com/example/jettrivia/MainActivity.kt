@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jettrivia.screens.QuestionViewModel
+import com.example.jettrivia.screens.TriviaHome
 import com.example.jettrivia.ui.theme.JetTriviaTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,40 +33,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun TriviaHome(viewModel: QuestionViewModel) {
-    Questions(viewModel)
-}
-
-@Composable
-fun Questions(viewModel: QuestionViewModel) {
-    val questionsList = viewModel.data.value.response?.toMutableList()
-    if(viewModel.data.value.loadingStatus == true){
-        Log.d("TAG", "Questions: Loading...")
-    }else{
-        Log.d("TAG", "Questions: stopped...")
-        questionsList?.forEach {
-            question ->
-            Log.d("TAG", "Questions: ${question.question}")
-        }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    JetTriviaTheme {
-        Greeting("Android")
     }
 }
